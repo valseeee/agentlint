@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- 更新 Next.js 至 16.4.2、React / React DOM 至 19.3.1、JSZip 至 3.10.2，并同步 React 类型声明。
+- 更新 GitHub Actions checkout / setup-node 至 v7。
+- 新增 ZIP 解包与分析的接口回归测试。
+- 暂缓开发工具批量升级：TypeScript 7 与当前声明文件构建流程不兼容，保留现有工具链。
+
 ## 0.4.0 — 2026-06-14
 
 ### 新功能

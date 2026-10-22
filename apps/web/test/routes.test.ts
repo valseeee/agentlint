@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import JSZip from "jszip";
 import { POST } from "../app/api/analyze/route";
 import { GET } from "../app/api/status/route";
 
@@ -28,6 +29,26 @@ describe("analysis input", () => {
     expect(response.status).toBe(200);
     expect((await response.json()).repository.source).toBe("demo");
     expect(fetch).not.toHaveBeenCalled();
+  });
+});
+
+describe("repository archives", () => {
+  it("extracts a GitHub ZIP and analyzes its instruction files", async () => {
+    const zip = new JSZip();
+    zip.file("repo-main/AGENTS.md", "Run `npm run missing-task` before committing.");
+    zip.file("repo-main/package.json", JSON.stringify({ scripts: { test: "vitest" } }));
+    const archive = await zip.generateAsync({ type: "arraybuffer" });
+    const fetch = vi.fn(async () => new Response(archive, { status: 200 }));
+    vi.stubGlobal("fetch", fetch);
+    const response = await POST(new Request("http://localhost/api/analyze", {
+      method: "POST", body: JSON.stringify({ repository: "test-owner/zip-regression", locale: "en-US" }),
+    }));
+    expect(response.status).toBe(200);
+    const payload = await response.json();
+    expect(payload.repository.source).toBe("public-archive");
+    expect(payload.report.summary.instructionFiles).toBe(1);
+    expect(payload.report.instructionFiles[0].path).toBe("AGENTS.md");
+    expect(payload.report.findings.some((finding: { evidence?: string }) => finding.evidence?.includes("missing-task"))).toBe(true);
   });
 });
 
