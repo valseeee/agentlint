@@ -1,0 +1,118 @@
+{
+  "name": "agentlint-vscode",
+  "displayName": "AgentLint",
+  "description": "%extension.description%",
+  "version": "0.4.0",
+  "publisher": "valseeee",
+  "engines": {
+    "vscode": "^1.90.0",
+    "node": ">=20.11"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:agentlint.analyze",
+    "onCommand:agentlint.showReport",
+    "onCommand:agentlint.exportMarkdown",
+    "onCommand:agentlint.applySafeFixes",
+    "workspaceContains:**/AGENTS.md",
+    "workspaceContains:**/CLAUDE.md"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "agentlint.analyze",
+        "title": "%command.analyze%"
+      },
+      {
+        "command": "agentlint.clear",
+        "title": "%command.clear%"
+      },
+      {
+        "command": "agentlint.showReport",
+        "title": "%command.showReport%"
+      },
+      {
+        "command": "agentlint.exportMarkdown",
+        "title": "%command.exportMarkdown%"
+      },
+      {
+        "command": "agentlint.applySafeFixes",
+        "title": "%command.applySafeFixes%"
+      }
+    ],
+    "configuration": {
+      "title": "%config.title%",
+      "properties": {
+        "agentlint.locale": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "zh-CN",
+            "en-US"
+          ],
+          "default": "auto",
+          "description": "%config.locale%"
+        },
+        "agentlint.analyzeOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.analyzeOnSave%"
+        },
+        "agentlint.maxFiles": {
+          "type": "number",
+          "default": 50000,
+          "minimum": 1000,
+          "maximum": 200000,
+          "description": "%config.maxFiles%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --platform=node --format=cjs --external:vscode --outfile=dist/extension.js",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@agentlint/core": "0.4.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valseeee/agentlint.git",
+    "directory": "apps/vscode"
+  },
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.nls.json",
+    "package.nls.zh-cn.json"
+  ],
+  "keywords": [
+    "agentlint",
+    "agents.md",
+    "claude-code",
+    "cursor",
+    "github-copilot",
+    "ai-agents",
+    "linter"
+  ],
+  "galleryBanner": {
+    "color": "#0b0d17",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/valseeee/agentlint#readme",
+  "bugs": {
+    "url": "https://github.com/valseeee/agentlint/issues"
+  }
+}

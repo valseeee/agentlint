@@ -1,0 +1,33 @@
+AgentLint v0.4.0 Windows 开始使用
+=================================
+
+最简单启动：
+1. 进入能够看到 package.json 的项目根目录。
+2. 双击 start-agentlint.bat。
+3. 等待浏览器打开 http://localhost:3000。
+4. 点击“查看问题示例”，或使用“本地 ZIP / 文件夹”。
+
+常用文件：
+- start-agentlint.bat              启动正式网页
+- configure-github-token.bat       隐藏输入并配置可选 GitHub 只读令牌
+- remove-github-token.bat          删除本地令牌配置
+- install-vscode-extension.bat     构建并安装 VS Code 扩展
+- run-cli-demo.bat                 查看中文 CLI 演示
+- build-release.bat                生成全部发布产物
+
+手动命令：
+  npm ci
+  npm run preview
+
+详细文档：
+  docs\README_ZH.md
+  docs\USER_GUIDE_ZH.md
+  docs\GITHUB_PUBLISH_ZH.md
+  docs\GITHUB_TOKEN_SETUP_ZH.md
+  docs\VSCODE_EXTENSION_ZH.md
+  docs\FAQ_ZH.md
+
+注意：
+- 普通体验不要使用 npm run dev，否则会看到框架开发调试界面。
+- 本地 ZIP/文件夹分析不需要 GitHub Token，也没有 API 次数限制。
+- 任何真实 Token 都不能截图、分享或提交到 GitHub。

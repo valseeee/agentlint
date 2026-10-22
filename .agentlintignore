@@ -1,0 +1,2 @@
+# Intentional fixtures should not affect the repository's own score.
+examples/**

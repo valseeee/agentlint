@@ -1,0 +1,43 @@
+name: AgentLint
+
+on:
+  pull_request:
+    paths:
+      - "**/AGENTS.md"
+      - "**/CLAUDE.md"
+      - "**/CLAUDE.local.md"
+      - "**/GEMINI.md"
+      - "**/.cursorrules"
+      - "**/.cursor/rules/**"
+      - "**/.claude/rules/**"
+      - "**/.clinerules/**"
+      - "**/.windsurfrules"
+      - "**/.windsurf/rules/**"
+      - ".github/copilot-instructions.md"
+      - ".github/instructions/**"
+      - ".github/agents/**"
+      - ".agentlint.json"
+      - "action.yml"
+      - "packages/core/**"
+      - "packages/cli/**"
+      - "apps/web/**"
+      - "apps/vscode/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  lint-agent-instructions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          language: zh-CN
+          fail-on: error
+          max-warnings: "10"
+          pr-comment: "true"

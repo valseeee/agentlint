@@ -1,0 +1,8 @@
+---
+description: Frontend rules
+globs: src/**/*.tsx
+alwaysApply: false
+---
+
+Use TypeScript for all new source files.
+Skip tests when only styles have changed.

@@ -1,0 +1,43 @@
+{
+  "name": "agentlint-monorepo",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "predev": "npm run build -w @agentlint/core",
+    "dev": "npm run dev -w @agentlint/web",
+    "build": "npm run build -w @agentlint/core && npm run build -w agentlint && npm run build -w @agentlint/web && npm run build -w agentlint-vscode",
+    "test": "npm run test -w @agentlint/core && npm run build -w @agentlint/core && npm exec -- vitest run apps/web/test",
+    "lint": "npm run lint -w @agentlint/web",
+    "agentlint": "npm run build -w @agentlint/core && npm run dev -w agentlint --",
+    "check": "node packages/cli/dist/index.cjs check . --fail-on error",
+    "check:strict": "node packages/cli/dist/index.cjs check . --fail-on warning",
+    "test:all": "npm run lint && npm test && npm run build && npm run check",
+    "build:web": "npm run build -w @agentlint/core && npm run build -w @agentlint/web",
+    "build:vscode": "npm run build -w @agentlint/core && npm run build -w agentlint-vscode",
+    "preview": "npm run build:web && npm run start -w @agentlint/web",
+    "start": "npm run start -w @agentlint/web",
+    "doctor": "node packages/cli/dist/index.cjs doctor . --network --lang zh-CN",
+    "rules": "node packages/cli/dist/index.cjs rules --lang zh-CN",
+    "package:vscode": "npm run build:vscode && npm run package -w agentlint-vscode",
+    "release:check": "node scripts/release-check.mjs",
+    "release:bundle": "npm run test:all && npm run package:vscode && node scripts/release-check.mjs && node scripts/create-release-bundle.mjs"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "license": "MIT",
+  "description": "Lint, validate and optimize instructions for AI coding agents",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valseeee/agentlint.git"
+  },
+  "homepage": "https://github.com/valseeee/agentlint#readme",
+  "bugs": {
+    "url": "https://github.com/valseeee/agentlint/issues"
+  }
+}

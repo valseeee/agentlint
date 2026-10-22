@@ -1,0 +1,12 @@
+{
+  "extension.description": "Diagnostics, reports and safe fixes for AGENTS.md, CLAUDE.md, Cursor Rules and other AI coding-agent instructions.",
+  "command.analyze": "AgentLint: Analyze Workspace",
+  "command.clear": "AgentLint: Clear Diagnostics",
+  "command.showReport": "AgentLint: Show Report",
+  "command.exportMarkdown": "AgentLint: Export Markdown Report",
+  "command.applySafeFixes": "AgentLint: Apply Safe Fixes",
+  "config.title": "AgentLint",
+  "config.locale": "Report language",
+  "config.analyzeOnSave": "Analyze when an instruction file is saved",
+  "config.maxFiles": "Maximum number of workspace files to enumerate"
+}

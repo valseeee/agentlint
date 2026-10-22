@@ -1,0 +1,29 @@
+name: Feature request
+description: Propose a new deterministic check or product capability
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem should AgentLint solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example inputs and expected findings
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Design fit
+      options:
+        - label: The behavior can be deterministic without a required model API.
+        - label: The proposal can provide evidence and an actionable suggestion.

@@ -1,0 +1,18 @@
+node_modules
+.next
+dist
+coverage
+.env
+.env.local
+.env.*
+!.env.example
+*.tsbuildinfo
+*.log
+.DS_Store
+
+# GitHub Actions require the bundled standalone CLI.
+!packages/cli/dist/
+!packages/cli/dist/**
+release/
+apps/vscode/*.vsix
+*.tgz

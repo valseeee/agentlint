@@ -1,0 +1,78 @@
+name: AgentLint
+description: Deterministically validate AI coding-agent instructions with bilingual reports, baseline diffs and PR comments.
+author: AgentLint contributors
+branding:
+  icon: shield
+  color: purple
+inputs:
+  path:
+    description: Repository-relative directory to analyze
+    required: false
+    default: .
+  language:
+    description: Report language (zh-CN or en-US)
+    required: false
+    default: en-US
+  fail-on:
+    description: Failure threshold (error, warning or never)
+    required: false
+    default: error
+  max-warnings:
+    description: Optional maximum warning count
+    required: false
+    default: ""
+  config:
+    description: Optional repository-relative additional configuration file
+    required: false
+    default: ""
+  baseline:
+    description: Optional repository-relative AgentLint JSON baseline
+    required: false
+    default: ""
+  pr-comment:
+    description: Create or update an AgentLint Pull Request comment
+    required: false
+    default: "false"
+  fix:
+    description: Apply deterministic safe fixes before reporting
+    required: false
+    default: "false"
+outputs:
+  score:
+    description: AgentLint score from 0 to 100
+    value: ${{ steps.analyze.outputs.score }}
+  grade:
+    description: Human-readable grade
+    value: ${{ steps.analyze.outputs.grade }}
+  errors:
+    description: Number of error findings
+    value: ${{ steps.analyze.outputs.errors }}
+  warnings:
+    description: Number of warning findings
+    value: ${{ steps.analyze.outputs.warnings }}
+  fixable:
+    description: Number of safe automatic fixes
+    value: ${{ steps.analyze.outputs.fixable }}
+runs:
+  using: composite
+  steps:
+    - name: Analyze agent instructions
+      id: analyze
+      shell: bash
+      env:
+        AGENTLINT_PATH: ${{ inputs.path }}
+        AGENTLINT_LANG: ${{ inputs.language }}
+        AGENTLINT_FAIL_ON: ${{ inputs.fail-on }}
+        AGENTLINT_MAX_WARNINGS: ${{ inputs.max-warnings }}
+        AGENTLINT_CONFIG: ${{ inputs.config }}
+        AGENTLINT_BASELINE: ${{ inputs.baseline }}
+        AGENTLINT_PR_COMMENT: ${{ inputs.pr-comment }}
+        AGENTLINT_FIX: ${{ inputs.fix }}
+      run: |
+        args=(check "$GITHUB_WORKSPACE/$AGENTLINT_PATH" --format github --lang "$AGENTLINT_LANG" --fail-on "$AGENTLINT_FAIL_ON")
+        if [[ -n "$AGENTLINT_MAX_WARNINGS" ]]; then args+=(--max-warnings "$AGENTLINT_MAX_WARNINGS"); fi
+        if [[ -n "$AGENTLINT_CONFIG" ]]; then args+=(--config "$GITHUB_WORKSPACE/$AGENTLINT_CONFIG"); fi
+        if [[ -n "$AGENTLINT_BASELINE" ]]; then args+=(--baseline "$GITHUB_WORKSPACE/$AGENTLINT_BASELINE"); fi
+        if [[ "$AGENTLINT_PR_COMMENT" == "true" ]]; then args+=(--pr-comment); fi
+        if [[ "$AGENTLINT_FIX" == "true" ]]; then args+=(--fix); fi
+        node "$GITHUB_ACTION_PATH/packages/cli/dist/index.cjs" "${args[@]}"

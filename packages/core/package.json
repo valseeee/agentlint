@@ -1,0 +1,60 @@
+{
+  "name": "@agentlint/core",
+  "version": "0.4.0",
+  "description": "Deterministic analyzer for AI coding-agent instruction files",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/browser.ts --format esm --dts --clean",
+    "dev": "tsup src/index.ts src/browser.ts --format esm --dts --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.0",
+    "vitest": "^4.1.8"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valseeee/agentlint.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/valseeee/agentlint#readme",
+  "bugs": {
+    "url": "https://github.com/valseeee/agentlint/issues"
+  },
+  "keywords": [
+    "agentlint",
+    "agents.md",
+    "claude-code",
+    "cursor",
+    "github-copilot",
+    "ai-agents",
+    "lint"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/valseeee/agentlint/main/docs/agentlint.schema.json",
+  "title": "AgentLint configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "ignore": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "maxInstructionTokens": {
+      "type": "integer",
+      "minimum": 200,
+      "default": 4000
+    },
+    "duplicateSimilarity": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 1,
+      "default": 0.88
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "error",
+          "warning",
+          "info",
+          "off"
+        ]
+      }
+    },
+    "locale": {
+      "type": "string",
+      "enum": [
+        "zh-CN",
+        "en-US"
+      ],
+      "default": "en-US",
+      "description": "Default report language / 默认报告语言"
+    }
+  }
+}

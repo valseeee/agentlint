@@ -1,0 +1,13 @@
+{
+  "$schema": "./docs/agentlint.schema.json",
+  "maxInstructionTokens": 4000,
+  "duplicateSimilarity": 0.88,
+  "ignore": [
+    "examples/**"
+  ],
+  "rules": {
+    "security/*": "error",
+    "security/force-with-lease": "warning",
+    "efficiency/near-duplicate-instruction": "info"
+  }
+}

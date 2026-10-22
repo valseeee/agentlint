@@ -1,0 +1,12 @@
+{
+  "extension.description": "为 AGENTS.md、CLAUDE.md、Cursor Rules 等 AI 编程助手规则提供诊断、报告与安全修复。",
+  "command.analyze": "AgentLint：分析工作区",
+  "command.clear": "AgentLint：清除诊断",
+  "command.showReport": "AgentLint：查看报告",
+  "command.exportMarkdown": "AgentLint：导出 Markdown 报告",
+  "command.applySafeFixes": "AgentLint：应用安全修复",
+  "config.title": "AgentLint",
+  "config.locale": "报告语言",
+  "config.analyzeOnSave": "保存规则文件时自动分析",
+  "config.maxFiles": "扫描工作区时最多枚举的文件数量"
+}

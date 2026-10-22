@@ -1,0 +1,9 @@
+{
+  "name": "agentlint-broken-demo",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "test": "vitest"
+  }
+}

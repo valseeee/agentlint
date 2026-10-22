@@ -1,0 +1,52 @@
+{
+  "name": "agentlint",
+  "version": "0.4.0",
+  "description": "Lint AI coding-agent instruction files in a repository",
+  "type": "module",
+  "bin": {
+    "agentlint": "./dist/index.cjs"
+  },
+  "main": "./dist/index.cjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@agentlint/core": "0.4.0",
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "tsx": "^4.21.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valseeee/agentlint.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/valseeee/agentlint#readme",
+  "bugs": {
+    "url": "https://github.com/valseeee/agentlint/issues"
+  },
+  "keywords": [
+    "agentlint",
+    "agents.md",
+    "claude-code",
+    "cursor",
+    "github-copilot",
+    "ai-agents",
+    "lint"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

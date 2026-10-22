@@ -1,0 +1,46 @@
+name: Bug report
+description: Report an incorrect result, crash, or integration problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve AgentLint. Remove secrets and proprietary code from examples.
+  - type: input
+    id: version
+    attributes:
+      label: AgentLint version
+      placeholder: 0.4.0
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did the problem occur?
+      options: [CLI, Web, GitHub Action, Core API, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the smallest safe instruction and repository metadata that reproduces the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and output
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: OS, Node.js version, package manager
