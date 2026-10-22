@@ -16,7 +16,7 @@
     "agentlint": "npm run build -w @agentlint/core && npm run dev -w agentlint --",
     "check": "node packages/cli/dist/index.cjs check . --fail-on error",
     "check:strict": "node packages/cli/dist/index.cjs check . --fail-on warning",
-    "test:all": "npm run lint && npm test && npm run build && npm run check",
+    "test:all": "npm test && npm run lint && npm run build && npm run check",
     "build:web": "npm run build -w @agentlint/core && npm run build -w @agentlint/web",
     "build:vscode": "npm run build -w @agentlint/core && npm run build -w agentlint-vscode",
     "preview": "npm run build:web && npm run start -w @agentlint/web",
