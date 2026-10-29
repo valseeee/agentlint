@@ -80,10 +80,10 @@
     "@agentlint/core": "0.4.0"
   },
   "devDependencies": {
-    "@types/vscode": "^1.90.0",
-    "@vscode/vsce": "^3.6.0",
-    "esbuild": "^0.25.0",
-    "typescript": "^6.0.0"
+    "@types/vscode": "^1.140.0",
+    "@vscode/vsce": "^4.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
   },
   "repository": {
     "type": "git",
